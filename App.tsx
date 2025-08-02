@@ -1,20 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Snackbar } from "@/components/Snackbar";
+import { AuthContextProvider } from "@/context/auth.context";
+import { SnackbarContextProvider } from "@/context/snackbar.context";
+import { NavigationRoutes } from "@/routes";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SnackbarContextProvider>
+      <AuthContextProvider>
+        <NavigationRoutes />
+        <Snackbar />
+      </AuthContextProvider>
+    </SnackbarContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
