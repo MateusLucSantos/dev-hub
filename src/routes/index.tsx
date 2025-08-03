@@ -1,4 +1,3 @@
-import { colors } from "@/theme";
 import {
   useFonts,
   Orbitron_400Regular,
@@ -6,9 +5,8 @@ import {
   Orbitron_700Bold,
 } from "@expo-google-fonts/orbitron";
 import { NavigationContainer } from "@react-navigation/native";
-import { ActivityIndicator } from "react-native";
 import { PublicRoutes } from "./PublicRoutes";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { PrivateRoutes } from "./PrivateRoutes";
 import { SystemBars } from "react-native-edge-to-edge";
 import { useAuthContext } from "@/context/auth.context";

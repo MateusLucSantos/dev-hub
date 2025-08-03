@@ -6,11 +6,9 @@ import { View } from "react-native";
 import { s } from "./styles";
 import { Button } from "@/components/Button";
 import { useAuthContext } from "@/context/auth.context";
-import { AxiosError } from "axios";
-import { AppError } from "@/shared/helpers/AppError";
+
 import { useSnackbarContext } from "@/context/snackbar.context";
 import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
-import { colors } from "@/theme";
 
 export interface FormLoginParams {
   client_id: string;

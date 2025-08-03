@@ -2,11 +2,9 @@ import { PropsWithChildren } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
-  SafeAreaView,
   ScrollView,
   StatusBar,
   TouchableWithoutFeedback,
-  View,
 } from "react-native";
 
 import { s } from "./styles";

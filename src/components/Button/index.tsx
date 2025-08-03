@@ -1,8 +1,5 @@
 import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { s } from "./styles";
-import { MaterialIcons } from "@expo/vector-icons";
-import { PropsWithChildren } from "react";
-import { colors } from "@/theme";
 
 type ButtonMode = "fill" | "outline";
 

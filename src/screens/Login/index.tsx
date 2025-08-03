@@ -2,11 +2,9 @@ import { Image, Text, View } from "react-native";
 import { s } from "./styles";
 import { colors } from "@/theme";
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from "@react-navigation/native";
 import { DismissKeyboardView } from "@/components/DismissKeyboardView";
 import { LoginForm } from "./components/LoginForm";
 import { useKeyboardVisible } from "@/shared/hooks/useKeyboardVisible";
-import { useAuthContext } from "@/context/auth.context";
 
 export function Login() {
   const keyboardVisible = useKeyboardVisible();
