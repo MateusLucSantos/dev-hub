@@ -18,10 +18,7 @@ export function DismissKeyboardView({ children }: PropsWithChildren) {
         translucent
       />
       <KeyboardAvoidingView behavior="padding" style={s.containerKeyboard}>
-        <TouchableWithoutFeedback
-          onPress={Keyboard.dismiss}
-          style={{ backgroundColor: "" }}
-        >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <ScrollView showsVerticalScrollIndicator={false}>
             {children}
           </ScrollView>

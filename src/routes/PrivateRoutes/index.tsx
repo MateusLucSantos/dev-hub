@@ -1,7 +1,7 @@
-import { Client } from "@/screens/Client";
+import { Client } from "@/screens/Clients";
 import { Home } from "@/screens/Home";
 import { Info } from "@/screens/Info";
-import { Service } from "@/screens/Service";
+import { Service } from "@/screens/Services";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export type PrivateStackParams = {

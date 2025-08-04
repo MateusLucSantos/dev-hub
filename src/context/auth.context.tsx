@@ -23,12 +23,9 @@ export function AuthContextProvider({ children }: PropsWithChildren) {
   const [expiresIn, setExpiresIn] = useState<number>(0);
   const [tokenType, setTokenType] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
-  //   const [authData, setAuthData] = useState<IAuthenticateResponse | undefined>(
-  //     undefined
-  //   );
 
   async function handleAuthenticate(formParams: FormLoginParams) {
-    const { access_token, expires_in, refresh_token, token_type } =
+    const { access_token, expires_in, token_type, refresh_token } =
       await authService.authenticate(formParams);
     await AsyncStorage.setItem(
       "dev-hub-login",

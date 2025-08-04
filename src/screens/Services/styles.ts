@@ -13,4 +13,9 @@ export const s = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
+  list: {
+    flex: 1,
+    marginTop: 10,
+    marginVertical: 10,
+  },
 });
