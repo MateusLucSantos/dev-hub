@@ -1,6 +1,12 @@
 import { IClient } from "../clients/client.response";
 import { Pagination } from "../pagination-client";
 
+export interface QueryPagination {
+  pagina: number;
+  itens_por_pagina: number;
+  total_registros?: number;
+}
+
 export interface GetClientsParams {
   pagina: number;
   itens_por_pagina: number;

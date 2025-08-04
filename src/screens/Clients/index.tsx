@@ -1,18 +1,21 @@
 import { Header } from "@/components/Header";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import { s } from "./styles";
 import { InputSearch } from "@/components/InputSearch";
 import { useClientContext } from "@/context/client.context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "@/components/Card";
+import { colors } from "@/theme";
 
 export function Client() {
-  const { fetchClients, clients } = useClientContext();
+  const { clients, loading, fetchClients, refresh, loadMoreClients } =
+    useClientContext();
+
   useEffect(() => {
     (async () => {
-      await fetchClients();
+      await fetchClients({ pagina: 0 });
     })();
-  });
+  }, []);
 
   return (
     <View style={s.container}>
@@ -22,7 +25,7 @@ export function Client() {
         <View style={s.list}>
           <FlatList
             data={clients}
-            keyExtractor={(item) => item.id_cliente.toString()}
+            keyExtractor={(item) => item.uuid_cliente}
             renderItem={({ item }) => (
               <Card
                 name={item.nome_razaosocial}
@@ -30,6 +33,10 @@ export function Client() {
               />
             )}
             showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl refreshing={loading} onRefresh={refresh} />
+            }
+            onEndReached={loadMoreClients}
           />
         </View>
       </View>

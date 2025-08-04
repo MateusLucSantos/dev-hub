@@ -3,7 +3,7 @@ import { IGroups } from "./groups";
 
 export interface IClient {
   id_cliente: number;
-  uuid_cliente: string | null;
+  uuid_cliente: string;
   codigo_cliente: number;
   nome_razaosocial: string | null;
   nome_fantasia: null;
