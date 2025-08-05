@@ -34,6 +34,6 @@ export const s = StyleSheet.create({
   iconButton: {
     flexDirection: "row",
     gap: 10,
-    paddingRight: 5,
+    paddingRight: 12,
   },
 });

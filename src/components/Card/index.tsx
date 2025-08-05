@@ -6,6 +6,7 @@ import {
 } from "react-native";
 import { s } from "./styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React from "react";
 
 type CardProps = TouchableOpacityProps & {
   name: string | null;
@@ -14,7 +15,7 @@ type CardProps = TouchableOpacityProps & {
   onPressEdit?: () => void;
 };
 
-export function Card({
+function CardComponent({
   name,
   phone,
   onPressView,
@@ -33,12 +34,11 @@ export function Card({
       </View>
       <View style={s.iconButton}>
         <TouchableOpacity onPress={onPressEdit} {...rest}>
-          <MaterialCommunityIcons name="account-edit" size={30} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onPressView} {...rest}>
-          <MaterialCommunityIcons name="account-eye" size={30} />
+          <MaterialCommunityIcons name="account-edit" size={36} />
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+
+export const Card = React.memo(CardComponent);

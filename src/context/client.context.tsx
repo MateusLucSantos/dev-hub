@@ -31,16 +31,22 @@ export function ClienteContextProvider({ children }: PropsWithChildren) {
   const [pagination, setPagination] = useState<QueryPagination>({
     pagina: 0,
     itens_por_pagina: 15,
+    total_registros: 0,
   });
 
   async function refresh() {
+    const { pagina, itens_por_pagina } = pagination;
     setLoading(true);
     const clientResponse = await clientServices.getAllClients({
       pagina: 0,
-      itens_por_pagina: 10,
+      itens_por_pagina: pagina * itens_por_pagina,
     });
 
     setClients(clientResponse.clientes);
+    setPagination({
+      ...pagination,
+      pagina,
+    });
     setLoading(false);
   }
 

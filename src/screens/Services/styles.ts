@@ -13,6 +13,14 @@ export const s = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
+  filter: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    top: 10,
+    right: 10,
+  },
   list: {
     flex: 1,
     marginTop: 10,

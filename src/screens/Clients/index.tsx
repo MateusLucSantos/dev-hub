@@ -3,19 +3,40 @@ import { FlatList, RefreshControl, Text, View } from "react-native";
 import { s } from "./styles";
 import { InputSearch } from "@/components/InputSearch";
 import { useClientContext } from "@/context/client.context";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Card } from "@/components/Card";
-import { colors } from "@/theme";
+import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
 
 export function Client() {
+  const { handleError } = useErrorHandler();
   const { clients, loading, fetchClients, refresh, loadMoreClients } =
     useClientContext();
 
   useEffect(() => {
     (async () => {
-      await fetchClients({ pagina: 0 });
+      try {
+        await fetchClients({ pagina: 0 });
+      } catch (error) {
+        handleError(error, "Falha ao buscar registros.");
+      }
     })();
   }, []);
+
+  async function handleLoadMoreClients() {
+    try {
+      await loadMoreClients();
+    } catch (error) {
+      handleError(error, "Falha ao buscar registros");
+    }
+  }
+
+  async function handleRefresh() {
+    try {
+      await refresh();
+    } catch (error) {
+      handleError(error, "Falha ao buscar registros");
+    }
+  }
 
   return (
     <View style={s.container}>
@@ -32,11 +53,14 @@ export function Client() {
                 phone={item.telefone_primario}
               />
             )}
+            initialNumToRender={10}
+            windowSize={5}
             showsVerticalScrollIndicator={false}
             refreshControl={
-              <RefreshControl refreshing={loading} onRefresh={refresh} />
+              <RefreshControl refreshing={loading} onRefresh={handleRefresh} />
             }
-            onEndReached={loadMoreClients}
+            onEndReachedThreshold={0.5}
+            onEndReached={handleLoadMoreClients}
           />
         </View>
       </View>
