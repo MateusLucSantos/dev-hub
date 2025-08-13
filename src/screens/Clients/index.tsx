@@ -42,7 +42,9 @@ export function Client() {
     <View style={s.container}>
       <Header goBack />
       <View style={s.content}>
-        <InputSearch label="Busque por Nome, CPF ou CNPJ" />
+        <View style={s.searh}>
+          <InputSearch label="Busque por Nome, CPF ou CNPJ" />
+        </View>
         <View style={s.list}>
           <FlatList
             data={clients}

@@ -13,6 +13,10 @@ export const s = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
+  searh: {
+    height: 40,
+    marginTop: 20,
+  },
   list: {
     flex: 1,
     marginTop: 10,

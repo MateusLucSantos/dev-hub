@@ -36,7 +36,7 @@ export function Service() {
 
   return (
     <View style={s.container}>
-      <Header />
+      <Header goBack />
       <View style={s.content}>
         <View style={s.filter}>
           <InputSearch
@@ -60,7 +60,7 @@ export function Service() {
             <View
               style={{ padding: 10, borderBottomWidth: 1, borderColor: "#ccc" }}
             >
-              <Text>Protocolo: {item.protocolo}</Text>
+              <Text>Protocolo: {item.cliente.nome_razaosocial}</Text>
               <Text>Status: {item.status}</Text>
               <Text>Assunto: {item.descricao_abertura}</Text>
               <Text>Cliente: {item.cliente.nome_razaosocial}</Text>

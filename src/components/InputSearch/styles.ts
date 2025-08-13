@@ -4,9 +4,7 @@ import { StyleSheet } from "react-native";
 export const s = StyleSheet.create({
   search: {
     flex: 1,
-    margin: 20,
-    marginBottom: 0,
-    height: 36,
+    marginHorizontal: 20,
   },
   contentSearch: {
     flexDirection: "row",

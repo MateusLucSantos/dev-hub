@@ -40,55 +40,63 @@ export function AttentanceContextProvider({
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-
   const [busca, setBusca] = useState("");
   const [termoBusca, setTermoBusca] = useState("");
 
   const limit = 20;
 
-  const loadMore = useCallback(async () => {
-    if (loading || !hasMore) return;
-    if (!busca || !termoBusca) return;
+  const loadAttentances = useCallback(
+    async (currentPage: number, resetData = false) => {
+      if (loading || !busca || !termoBusca) return;
 
-    setLoading(true);
-    setError(null);
+      setLoading(true);
+      setError(null);
 
-    try {
-      const params: GetAttentanceParams & { page: number; limit: number } = {
-        busca,
-        termo_busca: termoBusca,
-        page,
-        limit,
-      };
+      try {
+        const response = await fetchAttentance({
+          busca,
+          termo_busca: termoBusca,
+          page: currentPage,
+          limit,
+        });
 
-      const response = await fetchAttentance(params);
-      const data = response;
+        if (response.length < limit) setHasMore(false);
 
-      if (data.length < limit) setHasMore(false);
+        setAttentances((prev) =>
+          resetData ? response : [...prev, ...response]
+        );
+        setPage(currentPage + 1);
+      } catch (err: any) {
+        setError(err?.message || "Erro ao carregar atendimentos");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [busca, termoBusca, loading]
+  );
 
-      setAttentances((prev) => [...prev, ...data]);
-      setPage((prev) => prev + 1);
-    } catch (err: any) {
-      setError(err.message || "Erro ao carregar atendimentos");
-    } finally {
-      setLoading(false);
+  const loadMore = useCallback(() => {
+    if (hasMore && !loading) {
+      loadAttentances(page);
     }
-  }, [busca, termoBusca, page, loading, hasMore]);
+  }, [page, hasMore, loading, loadAttentances]);
 
   useEffect(() => {
     setAttentances([]);
     setPage(1);
     setHasMore(true);
+    setError(null);
 
     if (busca && termoBusca) {
-      loadMore();
+      loadAttentances(1, true);
     }
-  }, [busca, termoBusca]);
+  }, [busca, termoBusca]); // Removido loadAttentances das dependências
 
   const resetList = useCallback(() => {
     setAttentances([]);
     setPage(1);
     setHasMore(true);
+    setError(null);
   }, []);
 
   return (
@@ -112,5 +120,11 @@ export function AttentanceContextProvider({
 }
 
 export function useAttentanceContext() {
-  return useContext(AttentanceContext);
+  const context = useContext(AttentanceContext);
+  if (!context) {
+    throw new Error(
+      "useAttentanceContext must be used within AttentanceContextProvider"
+    );
+  }
+  return context;
 }
