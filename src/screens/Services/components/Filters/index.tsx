@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Checkbox from "expo-checkbox";
 import { s } from "./styles";
 import { colors } from "@/theme";
+import { useBottomSheetContext } from "@/context/bottomsheet.context";
 
 type FilterProps = {
   setBusca: (value: string) => void;
@@ -22,11 +23,17 @@ const options: FilterOption[] = [
 
 export function Filter({ setBusca }: FilterProps) {
   const [buscaOption, setBuscaOption] = useState("");
+  const { closeBottomSheet } = useBottomSheetContext();
 
   const onSelectOption = (value: string) => {
     const newValue = buscaOption === value ? "" : value;
     setBuscaOption(newValue);
     setBusca(newValue);
+    if (newValue) {
+      setTimeout(() => {
+        closeBottomSheet();
+      }, 200);
+    }
   };
 
   return (

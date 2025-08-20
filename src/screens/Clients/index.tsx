@@ -4,7 +4,7 @@ import { s } from "./styles";
 import { InputSearch } from "@/components/InputSearch";
 import { useClientContext } from "@/context/client.context";
 import { useEffect } from "react";
-import { Card } from "@/components/Card";
+import { Card } from "@/screens/Clients/components/Card";
 import { useErrorHandler } from "@/shared/hooks/useErrorHandler";
 
 export function Client() {
@@ -49,12 +49,7 @@ export function Client() {
           <FlatList
             data={clients}
             keyExtractor={(item) => item.uuid_cliente}
-            renderItem={({ item }) => (
-              <Card
-                name={item.nome_razaosocial}
-                phone={item.telefone_primario}
-              />
-            )}
+            renderItem={({ item }) => <Card data={item} />}
             initialNumToRender={10}
             windowSize={5}
             showsVerticalScrollIndicator={false}

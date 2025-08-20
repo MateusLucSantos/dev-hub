@@ -1,7 +1,7 @@
 import { FormLoginParams } from "@/screens/Login/components/LoginForm";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import * as authService from "@/shared/services/dev-hub/auth.service";
-import { IAuthenticateResponse } from "@/shared/interfaces/https/authenticate.response";
+import { IAuthenticateResponse } from "@/shared/interfaces/https/authenticate";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type AuthContextType = {

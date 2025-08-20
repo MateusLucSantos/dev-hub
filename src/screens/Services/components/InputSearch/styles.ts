@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 export const s = StyleSheet.create({
   search: {
     flex: 1,
-    margin: 20,
+    margin: 10,
     marginBottom: 0,
     height: 36,
   },

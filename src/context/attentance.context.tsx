@@ -8,10 +8,7 @@ import React, {
 } from "react";
 
 import { fetchAttentance } from "@/shared/services/dev-hub/services.service";
-import {
-  GetAttentanceResponse,
-  GetAttentanceParams,
-} from "@/shared/interfaces/attentances/attentance.response";
+import { GetAttentanceResponse } from "@/shared/interfaces/attentances/attentance.response";
 
 interface AttentanceContextData {
   attentances: GetAttentanceResponse[];
@@ -66,8 +63,8 @@ export function AttentanceContextProvider({
           resetData ? response : [...prev, ...response]
         );
         setPage(currentPage + 1);
-      } catch (err: any) {
-        setError(err?.message || "Erro ao carregar atendimentos");
+      } catch (error: any) {
+        setError(error?.message || "Erro ao carregar atendimentos");
       } finally {
         setLoading(false);
       }
@@ -90,7 +87,7 @@ export function AttentanceContextProvider({
     if (busca && termoBusca) {
       loadAttentances(1, true);
     }
-  }, [busca, termoBusca]); // Removido loadAttentances das dependências
+  }, [busca, termoBusca]);
 
   const resetList = useCallback(() => {
     setAttentances([]);
@@ -121,10 +118,5 @@ export function AttentanceContextProvider({
 
 export function useAttentanceContext() {
   const context = useContext(AttentanceContext);
-  if (!context) {
-    throw new Error(
-      "useAttentanceContext must be used within AttentanceContextProvider"
-    );
-  }
   return context;
 }

@@ -1,5 +1,5 @@
 import { IClient } from "@/shared/interfaces/clients/client.response";
-import { QueryPagination } from "@/shared/interfaces/https/get-client-request";
+import { QueryPagination } from "@/shared/interfaces/https/get-client";
 import * as clientServices from "@/shared/services/dev-hub/client.service";
 import {
   createContext,
@@ -58,7 +58,7 @@ export function ClienteContextProvider({ children }: PropsWithChildren) {
         itens_por_pagina: pagination.itens_por_pagina,
       });
 
-      if (pagina === 1) {
+      if (pagina === 0) {
         setClients(clientResponse.clientes);
       } else {
         setClients((prevState) => [...prevState, ...clientResponse.clientes]);
@@ -76,7 +76,7 @@ export function ClienteContextProvider({ children }: PropsWithChildren) {
   const loadMoreClients = useCallback(async () => {
     if (loading) return;
 
-    fetchClients({ pagina: pagination.pagina + 1 });
+    await fetchClients({ pagina: pagination.pagina + 1 });
   }, [loading, pagination]);
   return (
     <ClientContext.Provider

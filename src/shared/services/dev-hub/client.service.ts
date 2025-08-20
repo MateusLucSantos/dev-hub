@@ -2,7 +2,7 @@ import { devHubApi } from "@/shared/api/dev-hub";
 import {
   GetClientsParams,
   GetClientResponse,
-} from "@/shared/interfaces/https/get-client-request";
+} from "@/shared/interfaces/https/get-client";
 import qs from "qs";
 
 export async function getAllClients(
@@ -33,6 +33,16 @@ export async function getAllClients(
     return data;
   } catch (error) {
     console.error("Erro ao buscar clientes:", error);
+    throw error;
+  }
+}
+
+export async function editClientById(id: number, clientData: any) {
+  try {
+    const { data } = await devHubApi.put(`/api/v1/integracao/cliente/${id}`, clientData);
+    return data;
+  } catch (error) {
+    console.error("Erro ao editar cliente:", error);
     throw error;
   }
 }

@@ -18,12 +18,11 @@ export const s = StyleSheet.create({
     alignItems: "center",
   },
   icon: {
-    top: 10,
-    right: 10,
+    top: 5,
+    right: 5,
   },
   list: {
-    flex: 1,
-    marginTop: 10,
-    marginVertical: 10,
+    top: 5,
+    bottom: 50,
   },
 });

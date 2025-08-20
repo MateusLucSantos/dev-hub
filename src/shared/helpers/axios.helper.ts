@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AxiosInstance } from "axios";
-import { IAuthenticateResponse } from "../interfaces/https/authenticate.response";
+import { IAuthenticateResponse } from "../interfaces/https/authenticate";
 
 export function addTokenToRequest(axiosInstance: AxiosInstance) {
   axiosInstance.interceptors.request.use(
