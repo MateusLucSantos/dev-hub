@@ -6,7 +6,7 @@ export const s = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: colors.gray[400],
-    height: 70,
+    height: 80,
     borderWidth: 1,
     borderColor: colors.gray[600],
     borderRadius: 10,

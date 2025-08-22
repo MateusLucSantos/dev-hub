@@ -16,24 +16,30 @@ type CardProps = TouchableOpacityProps & {
   data: IClient;
 };
 
-function CardComponent({ data, ...rest }: CardProps) {
+export function Card({ data, ...rest }: CardProps) {
   const { openBottomSheet } = useBottomSheetContext();
 
   return (
     <View style={s.container}>
       <View style={s.contentText}>
         <Text style={s.text} numberOfLines={1}>
-          {data.nome_razaosocial || "Nome não informado."}
+          Nome: {data.nome_razaosocial || "Nome não informado."}
         </Text>
         <Text style={s.text} numberOfLines={1}>
-          {data.telefone_primario || "Telefone não informado."}
+          CPF/CNPJ: {data.cpf_cnpj || "CPF ou CNPJ não informado."}
+        </Text>
+        <Text style={s.text} numberOfLines={1}>
+          Telefone: {data.telefone_primario || "Telefone não informado."}
         </Text>
       </View>
 
       <View style={s.iconButton}>
         <TouchableOpacity
           onPress={() =>
-            openBottomSheet(<EditClient id={data.id_cliente} />, 1)
+            openBottomSheet(
+              <EditClient id_cliente={data.id_cliente} cliente={data} />,
+              1
+            )
           }
           {...rest}
         >
@@ -43,5 +49,3 @@ function CardComponent({ data, ...rest }: CardProps) {
     </View>
   );
 }
-
-export const Card = React.memo(CardComponent);

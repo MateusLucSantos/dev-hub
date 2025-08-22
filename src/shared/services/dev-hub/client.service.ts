@@ -1,4 +1,9 @@
 import { devHubApi } from "@/shared/api/dev-hub";
+import { AppError } from "@/shared/helpers/AppError";
+import {
+  EditClienteParams,
+  EditClienteResponse,
+} from "@/shared/interfaces/https/edit-client";
 import {
   GetClientsParams,
   GetClientResponse,
@@ -31,18 +36,23 @@ export async function getAllClients(
     );
 
     return data;
-  } catch (error) {
-    console.error("Erro ao buscar clientes:", error);
+  } catch (error: any) {
     throw error;
   }
 }
 
-export async function editClientById(id: number, clientData: any) {
+export async function editClientById(
+  id: number,
+  clientData: EditClienteParams
+): Promise<EditClienteResponse> {
   try {
-    const { data } = await devHubApi.put(`/api/v1/integracao/cliente/${id}`, clientData);
+    const { data } = await devHubApi.put<EditClienteResponse>(
+      `/api/v1/integracao/cliente/cadastro/${id}`,
+      clientData
+    );
+
     return data;
-  } catch (error) {
-    console.error("Erro ao editar cliente:", error);
-    throw error;
+  } catch (erro) {
+    throw new AppError("Erro ao atualizar cliente.");
   }
 }

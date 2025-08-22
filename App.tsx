@@ -12,14 +12,14 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SnackbarContextProvider>
         <AuthContextProvider>
-          <BottomSheetProvider>
-            <ClienteContextProvider>
-              <AttentanceContextProvider>
+          <ClienteContextProvider>
+            <AttentanceContextProvider>
+              <BottomSheetProvider>
                 <NavigationRoutes />
                 <Snackbar />
-              </AttentanceContextProvider>
-            </ClienteContextProvider>
-          </BottomSheetProvider>
+              </BottomSheetProvider>
+            </AttentanceContextProvider>
+          </ClienteContextProvider>
         </AuthContextProvider>
       </SnackbarContextProvider>
     </GestureHandlerRootView>
